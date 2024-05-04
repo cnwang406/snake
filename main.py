@@ -15,6 +15,10 @@ import numpy as np
 import time
 
 VERSION = 0.1
+
+SPEED_FACTOR = 0.9
+SPEED_STEPS = 20
+
 DIR_UP = 0
 DIR_RIGHT = 1
 DIR_DOWN = 2
@@ -128,8 +132,8 @@ class Snake():
 	
 
 	def checkSpeed(self):
-		if self.stageSteps == 20:
-			self.delay *= 0.9
+		if self.stageSteps == SPEED_STEPS:
+			self.delay *= SPEED_FACTOR
 			self.stageSteps = 0
 
 
