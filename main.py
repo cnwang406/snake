@@ -138,7 +138,7 @@ class Snake():
 
 
 	def showScore(self):
-		score = f'Snake Ver{VERSION} by cnwang         Score : {self.score:6,}  s: {self.totalSteps:6,}  #: {self.totalAtes:6,}   {self.drawSnakeInString()}'
+		score = f'Snake Ver{VERSION} by cnwang       Score : {self.score:6,}  s: {self.totalSteps:6,}  #: {self.totalAtes:6,}   {self.drawSnakeInString()}'
 		scorelen = len(score)
 		score = (' '* int((80-scorelen)/2) + score + ' '* int((80-scorelen)/2))[:SCREEN_MAX_C-1]
 		self.putCenter(0, score, attr = curses.A_REVERSE)
@@ -168,6 +168,9 @@ class Snake():
 		self.putCenter(16, f'You are dead due to {dead}',curses.A_BLINK)
 
 		self.putCenter(20,'Press any key to replay, q to quit')
+		curses.beep()
+		for i in range(10):
+			curses.flash()
 		pass
 		
 	def drawSnake(self):
@@ -227,6 +230,8 @@ f'       Ver {VERSION}, by cnwang in Python',
 
 
 def main(stdscr):
+	SCREEN_MAX_R, SCREEN_MAX_C = stdscr.getmaxyx()
+	print ( SCREEN_MAX_R, SCREEN_MAX_C)
 	showStart(stdscr)
 	stdscr.nodelay(True)
 	stdscr.refresh()
